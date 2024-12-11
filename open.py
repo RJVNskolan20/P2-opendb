@@ -1,104 +1,94 @@
 import csv
-import os
-import locale
+
+products = [
+    {
+        "id": 1,
+        "name": "Wireless Keyboard Pro",
+        "description": "A compact wireless keyboard with a long battery life.",
+        "price": 29.99,
+        "quantity": 150
+    },
+    {
+        "id": 2,
+        "name": "Noise-Cancelling Headphones Max",
+        "description": "High-quality headphones with active noise cancellation.",
+        "price": 199.99,
+        "quantity": 75
+    },
+    {
+        "id": 3,
+        "name": "4K Ultra HD Monitor",
+        "description": "A stunning 27-inch 4K monitor with vibrant colors.",
+        "price": 399.99,
+        "quantity": 50
+    },
+    {
+        "id": 4,
+        "name": "Bluetooth Speaker",
+        "description": "Portable Bluetooth speaker with deep bass and crystal clear sound.",
+        "price": 59.99,
+        "quantity": 200
+    },
+    {
+        "id": 5,
+        "name": "Gaming Mouse Xtreme",
+        "description": "Ergonomic gaming mouse with customizable buttons and RGB lighting.",
+        "price": 49.99,
+        "quantity": 120
+    },
+    {
+        "id": 6,
+        "name": "Smartwatch Fit",
+        "description": "Fitness-focused smartwatch with heart rate monitor and GPS.",
+        "price": 149.99,
+        "quantity": 80
+    },
+    {
+        "id": 7,
+        "name": "Portable SSD 1TB",
+        "description": "High-speed portable SSD with 1TB storage capacity.",
+        "price": 129.99,
+        "quantity": 90
+    },
+    {
+        "id": 8,
+        "name": "USB-C Hub",
+        "description": "7-in-1 USB-C hub with HDMI, USB 3.0, and SD card reader.",
+        "price": 34.99,
+        "quantity": 140
+    },
+    {
+        "id": 9,
+        "name": "Mechanical Keyboard",
+        "description": "RGB mechanical keyboard with tactile switches.",
+        "price": 89.99,
+        "quantity": 110
+    },
+    {
+        "id": 10,
+        "name": "1080p Webcam",
+        "description": "Full HD webcam with built-in microphone for video conferencing.",
+        "price": 39.99,
+        "quantity": 95
+    },
+    {
+        "id": 1000,
+        "name": "Wi-Fi Range Extender",
+        "description": "Boost your Wi-Fi signal with this easy-to-install range extender.",
+        "price": 49.99,
+        "quantity": 130
+    }
+]
 
 
 
-def load_data(filename):
-<<<<<<< HEAD
-    products = [] #lista
+# Define the CSV file path
+csv_file_path = "db_products.csv"
 
-=======
-    products = [] 
-    
->>>>>>> 1bcfe247a0afa3a0142b6b26398324d2841dea6d
-    with open(filename, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            id = int(row['id'])
-            name = row['name']
-            desc = row['desc']
-            price = float(row['price'])
-            quantity = int(row['quantity'])
+# Write the products data to a CSV file
+with open(csv_file_path, mode='w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=["id", "name", "desc", "price", "quantity"])
+    writer.writeheader()  # Write the header row
+    writer.writerows(products)  # Write the product data
 
-            products.append(
-                {                   #dictionary
-                    "id": id,       #"keys" / nycklar : värde
-                    "name": name,
-                    "desc": desc,
-                    "price": price,
-                    "quantity": quantity
-                }
-            )
-    return products
-<<<<<<< HEAD
-
-
-
-def get_product(products, id):
-    if id < 0 or id > len(products) - 1:
-        return "produkten hittas inte"
-    else: 
-        return f"{products[id]['name']} {products[id]['desc']}"
-    
-def remove_product(products, id):
-    print(id)
-    temp_product = products[id]["name"]
-    products.pop(id)
-    return f"product: {id} was removed"
-
-def get_products(products):
-=======
-    
-def view_products(products):
->>>>>>> 1bcfe247a0afa3a0142b6b26398324d2841dea6d
-    product_list = []
-     #TODO: gör en nummerlista med enumerate (att använda id kommer inte fungera i längden)
-     
-    for product in products:
-<<<<<<< HEAD
-        product_info = f"Product: {product['name']} \t {product['desc']} \t {locale.currency(product['price'], grouping=True)}"
-=======
-        product_info = f"(#{product['id']}) {product['name']} \t {product['desc']} \t {locale.currency(product['price'], grouping=True)}"
->>>>>>> 1bcfe247a0afa3a0142b6b26398324d2841dea6d
-        product_list.append(product_info)
-
-    return "\n".join(product_list)
-
-
-<<<<<<< HEAD
-#TODO: gör om så du slipper använda global-keyword
-#TODO: write a function to return a specific product
-=======
-#TODO: skriv en funktion som returnerar en specifik produkt med hjälp av id
-#TODO: skriv en funktion som tar bort en specifik produkt med hjälp av id
-
->>>>>>> 1bcfe247a0afa3a0142b6b26398324d2841dea6d
-
-
-locale.setlocale(locale.LC_ALL, 'sv_SE.UTF-8')  
-
-<<<<<<< HEAD
-
-os.system('cls')
-products = load_data('db_products.csv')
-
-print(get_products(products))
-
-while True: 
-    try: 
-        print(get_products(products))
-        id = int(input("vilken? "))
-        print(remove_product(products, id ))
-
-    except: 
-        print("Sweet summer child du behöver skriva siffror")
-        continue
-=======
-while True:
-    os.system('cls')
-    products = load_data('db_products.csv')
-    print(view_products(products))
-
-    id = int(input("Vilken produkt vill du visa? "))
->>>>>>> 1bcfe247a0afa3a0142b6b26398324d2841dea6d
+print(f"Data successfully saved to {csv_file_path}")
