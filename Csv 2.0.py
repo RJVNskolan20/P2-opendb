@@ -37,10 +37,27 @@ def add_product(products, name, desc, price, quantity):
 
 # View a specific product by ID
 def view_product(products, id):
+    """
+    Displays detailed information about a specific product by its ID.
+    :param products: List of products.
+    :param id: ID of the product to view.
+    :return: Formatted string with product details or an error message.
+    """
     for product in products:
         if product["id"] == id:
-            return f"{bcolors.CYAN}Visar produkt: {product['name']} {product['desc']}{bcolors.DEFAULT}"
-    return f"{bcolors.RED}Produkten hittas inte{bcolors.DEFAULT}"
+            return (f"{bcolors.CYAN}Product Details:\n"
+                    f"ID: {product['id']}\n"
+                    f"Name: {product['name']}\n"
+                    f"Description: {product['desc']}\n"
+                    f"Price: {locale.currency(product['price'], grouping=True)}\n"
+                    f"Quantity: {product['quantity']}{bcolors.DEFAULT}")
+    
+    return f"{bcolors.RED}Product with ID {id} not found.{bcolors.DEFAULT}"
+
+products = [
+    {"id": 1, "name": "Laptop", "desc": "High-performance laptop", "price": 1500.0, "quantity": 5},
+    {"id": 2, "name": "Mouse", "desc": "Wireless mouse", "price": 25.0, "quantity": 50}
+]
 
 
 # Remove a product by ID
