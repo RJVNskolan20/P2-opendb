@@ -207,6 +207,7 @@ while True:
         try:
             index = int(input("Enter product ID: "))
             print(view_product(products, index))
+            save_data(products, 'db_products.csv')
         except ValueError:
             print("Please enter a valid numeric product ID.")
             
