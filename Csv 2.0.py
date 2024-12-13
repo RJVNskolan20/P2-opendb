@@ -199,6 +199,7 @@ while True:
             price = float(input("Price: "))
             quantity = int(input("Quantity: "))
             print(add_product(products, name, desc, price, quantity))
+            save_data(products, 'db_products.csv')
         except ValueError:
             print("Please enter valid numbers for price and quantity.")
         
